@@ -20,7 +20,7 @@ const PortalHeader: React.FC = () => {
           {/* Logo and Brand */}
           <div className="flex items-center">
             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
-              <span className="text-white font-bold text-sm">YC</span>
+              <span className="text-white font-bold text-sm">YCBP</span>
             </div>
             <h1 className="text-xl font-bold text-gray-900">CyberLab</h1>
           </div>
