@@ -7,7 +7,7 @@ const Leaderboard: React.FC = () => {
   const { user } = useAuth();
 
   return (
-    <div className="p-4 sm:p-6">
+    <div className="p-4 sm:p-6 py-8 mt-8">
       <h1 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">
         Leaderboard
       </h1>
