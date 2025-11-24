@@ -8,7 +8,7 @@ import SignUp from "./pages/LoginAndSignUp/Signup";
 import CyberChallenges from "./pages/CyberChallenges";
 import ChallengeDetail from "./pages/ChallengeDetails";
 import Leaderboard from "./pages/Leaderboard";
-import {Mentorship} from "./pages/Mentorship";
+import Mentorship from "./pages/Mentorship";
 import Profile from "./pages/Profile";
 
 const App: React.FC = () => {

@@ -1,38 +1,174 @@
-// src/pages/Mentorship.tsx
-import React from 'react';
-import { useAuth } from '../contexts';
+import React, { useState } from 'react';
+import { useMentorship } from '../contexts/MentorshipContext';
+import MentorCard from '../components/mentorship/MentorCard';
+import ForumCard from '../components/mentorship/ForumCard';
+import JoinForumModal from '../components/mentorship/JoinForumModal';
+import ForumChat from '../components/mentorship/ForumChat';
 
-export const Mentorship: React.FC = () => {
-    const { theme } = useAuth();
+const Mentorship: React.FC = () => {
+  const { 
+    mentors, 
+    forums, 
+    currentForum, 
+    setCurrentForum, 
+    joinForum 
+  } = useMentorship();
+  
+  const [selectedMentorId, setSelectedMentorId] = useState<string | null>(null);
+  const [joinModalOpen, setJoinModalOpen] = useState(false);
+  const [forumToJoin, setForumToJoin] = useState<string | null>(null);
 
+  // Filter forums by selected mentor
+  const filteredForums = selectedMentorId 
+    ? forums.filter(forum => forum.mentorId === selectedMentorId)
+    : forums;
+
+  const handleViewForums = (mentorId: string) => {
+    setSelectedMentorId(mentorId);
+  };
+
+  const handleBackToMentors = () => {
+    setSelectedMentorId(null);
+  };
+
+  const handleJoinForum = (forumId: string) => {
+    setForumToJoin(forumId);
+    setJoinModalOpen(true);
+  };
+
+  const handleConfirmJoin = (forumId: string) => {
+    joinForum(forumId);
+    setJoinModalOpen(false);
+    setForumToJoin(null);
+  };
+
+  const handleEnterForum = (forum: (typeof forums)[number]) => {
+    setCurrentForum(forum);
+  };
+
+  const handleLeaveForum = () => {
+    setCurrentForum(null);
+  };
+
+  // If user is in a forum chat, show the chat interface
+  if (currentForum) {
     return (
-        <div className="p-4 md:p-8 mt-7">
-            <h2 className={`text-3xl font-extrabold mb-6 ${theme === 'dark' ? 'text-white' : 'text-slate-800'}`}>Mentorship Hub & Secure Sandbox</h2>
-            <div className={`p-6 rounded-xl shadow-lg ${theme === 'dark' ? 'bg-slate-800/90' : 'bg-white shadow-lg'}`}>
-                <h3 className={`text-xl font-semibold mb-3 ${theme === 'dark' ? 'text-cyan-400' : 'text-cyan-600'}`}>Secure Sandbox Console</h3>
-                <p className={`text-sm ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'} mb-4`}>
-                    Launch your Dockerized lab environments here. (Simulation only - requires external integration).
-                </p>
-                <button className="bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 rounded-lg transition duration-150">
-                    Launch Sandbox Environment
-                </button>
-                <div className={`mt-8 border-t pt-4 ${theme === 'dark' ? 'border-slate-700' : 'border-gray-200'}`}>
-                    <h3 className={`text-xl font-semibold mb-3 ${theme === 'dark' ? 'text-cyan-400' : 'text-cyan-600'}`}>Mentor Chat Forum</h3>
-                    <div className={`h-40 p-4 rounded-lg overflow-y-auto ${theme === 'dark' ? 'bg-slate-900 border border-slate-700' : 'bg-gray-100 border border-gray-300'}`}>
-                        <p className={`text-sm ${theme === 'dark' ? 'text-slate-500' : 'text-gray-400'}`}>
-                            [Simulation: Real-time chat powered by Socket.io would appear here.]
-                        </p>
-                        <p className={`text-sm mt-2 ${theme === 'dark' ? 'text-slate-300' : 'text-gray-700'}`}>
-                            Mentor Kwasi: Welcome to the Web App Security room! Let me know your questions about Challenge C2.
-                        </p>
-                    </div>
-                    <input
-                        type="text"
-                        placeholder="Type your message to the mentor..."
-                        className={`mt-3 w-full p-2 rounded-lg text-sm transition duration-150 ${theme === 'dark' ? 'bg-slate-700 text-white border border-slate-600 focus:ring-cyan-500' : 'bg-white border border-gray-300 focus:ring-cyan-500'}`}
-                    />
-                </div>
-            </div>
-        </div>
+      <div className="p-4 md:p-8 max-w-6xl mx-auto">
+        <ForumChat forum={currentForum} onLeave={handleLeaveForum} />
+      </div>
     );
+  }
+
+  // If viewing forums for a specific mentor
+  if (selectedMentorId) {
+    const mentor = mentors.find(m => m.id === selectedMentorId);
+    
+    return (
+      <div className="p-4 md:p-8 max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="mb-6">
+          <button
+            onClick={handleBackToMentors}
+            className="flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-4"
+          >
+            <span>←</span>
+            Back to All Mentors
+          </button>
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
+            {mentor?.name}'s Forums
+          </h1>
+          <p className="text-gray-600 mt-2">
+            Join forums led by {mentor?.name} to get expert guidance
+          </p>
+        </div>
+
+        {/* Forums Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {filteredForums.map(forum => (
+            <ForumCard
+              key={forum.id}
+              forum={forum}
+              onJoin={handleJoinForum}
+              onEnter={handleEnterForum}
+            />
+          ))}
+        </div>
+
+        {/* Empty State */}
+        {filteredForums.length === 0 && (
+          <div className="text-center py-12">
+            <div className="text-6xl mb-4">💬</div>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">
+              No Forums Available
+            </h3>
+            <p className="text-gray-600">
+              {mentor?.name} hasn't created any forums yet.
+            </p>
+          </div>
+        )}
+
+        {/* Join Modal */}
+        <JoinForumModal
+          forum={forumToJoin ? forums.find(f => f.id === forumToJoin) || null : null}
+          isOpen={joinModalOpen}
+          onClose={() => setJoinModalOpen(false)}
+          onConfirm={handleConfirmJoin}
+        />
+      </div>
+    );
+  }
+
+  // Main mentors view
+  return (
+    <div className="p-4 md:p-8 max-w-6xl mx-auto">
+      {/* Header */}
+      <div className="mb-8">
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+          Cybersecurity Mentorship
+        </h1>
+        <p className="text-gray-600 text-lg">
+          Connect with experienced cybersecurity professionals and join specialized forums
+        </p>
+      </div>
+
+      {/* Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div className="bg-blue-50 rounded-lg p-4 text-center">
+          <div className="text-2xl font-bold text-blue-700">{mentors.length}</div>
+          <div className="text-blue-600">Expert Mentors</div>
+        </div>
+        <div className="bg-green-50 rounded-lg p-4 text-center">
+          <div className="text-2xl font-bold text-green-700">
+            {forums.reduce((sum, forum) => sum + forum.memberCount, 0)}
+          </div>
+          <div className="text-green-600">Active Members</div>
+        </div>
+        <div className="bg-purple-50 rounded-lg p-4 text-center">
+          <div className="text-2xl font-bold text-purple-700">{forums.length}</div>
+          <div className="text-purple-600">Specialized Forums</div>
+        </div>
+      </div>
+
+      {/* Mentors Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {mentors.map(mentor => (
+          <MentorCard
+            key={mentor.id}
+            mentor={mentor}
+            onViewForums={handleViewForums}
+          />
+        ))}
+      </div>
+
+      {/* Join Modal */}
+      <JoinForumModal
+        forum={forumToJoin ? forums.find(f => f.id === forumToJoin) || null : null}
+        isOpen={joinModalOpen}
+        onClose={() => setJoinModalOpen(false)}
+        onConfirm={handleConfirmJoin}
+      />
+    </div>
+  );
 };
+
+export default Mentorship;
