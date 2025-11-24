@@ -4,6 +4,7 @@ import App from './App.tsx';
 import { AuthProvider } from './contexts';
 import { PortalProvider } from './contexts';
 import { MentorshipProvider } from './contexts/MentorshipContext';
+import { ToastProvider } from './contexts/ToastContext'; 
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -11,7 +12,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <AuthProvider>
       <PortalProvider>
         <MentorshipProvider>
-          <App />
+          <ToastProvider> 
+            <App />
+          </ToastProvider>
         </MentorshipProvider>
       </PortalProvider>
     </AuthProvider>
