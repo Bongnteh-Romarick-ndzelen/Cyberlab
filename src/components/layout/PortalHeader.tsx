@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { useAuth } from '../../contexts';
-import { usePortal } from '../../contexts';
-import MobileMenu from './MobileMenu';
-import LogoutModal from './LogoutModal';
+import React, { useState } from "react";
+import { useAuth } from "../../contexts";
+import { usePortal } from "../../contexts";
+import MobileMenu from "./MobileMenu";
+import LogoutModal from "./LogoutModal";
 
 const PortalHeader: React.FC = () => {
   const { user, logout } = useAuth();
@@ -36,11 +36,15 @@ const PortalHeader: React.FC = () => {
             {/* Left: Logo and Brand */}
             <div className="flex items-center">
               <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center mr-3 shadow-md">
-                <span className="text-white font-bold text-sm">YC</span>
+                <span className="text-white font-bold text-xs">YCBP</span>
               </div>
-              <div className="hidden sm:block">
-                <h1 className="text-xl font-bold text-gray-900">CyberLab</h1>
-                <p className="text-xs text-gray-500">Youth Cyber Bootcamp</p>
+              <div>
+                <h1 className="text-lg sm:text-xl font-bold text-gray-900">
+                  CyberLab
+                </h1>
+                <p className="hidden sm:block text-xs text-gray-500">
+                  Youth Cyber Bootcamp
+                </p>
               </div>
             </div>
 
@@ -75,7 +79,7 @@ const PortalHeader: React.FC = () => {
                     {userStats.points} pts
                   </p>
                 </div>
-                
+
                 {/* Avatar - Always visible */}
                 <div className="w-9 h-9 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-sm">
                   {user?.username?.charAt(0).toUpperCase() || "U"}
@@ -88,8 +92,18 @@ const PortalHeader: React.FC = () => {
                 className="md:hidden p-2 rounded-lg text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-colors"
                 aria-label="Open menu"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 </svg>
               </button>
 
@@ -98,8 +112,18 @@ const PortalHeader: React.FC = () => {
                 onClick={() => setIsLogoutModalOpen(true)}
                 className="hidden md:flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-red-700 transition-colors shadow-sm"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                  />
                 </svg>
                 Logout
               </button>
@@ -110,14 +134,22 @@ const PortalHeader: React.FC = () => {
                 className="md:hidden bg-red-600 text-white p-2 rounded-lg hover:bg-red-700 transition-colors"
                 aria-label="Logout"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                  />
                 </svg>
               </button>
             </div>
           </div>
-
-          {/* Remove the separate mobile points bar - everything is now in one row */}
         </div>
       </header>
 
