@@ -29,16 +29,17 @@ const App: React.FC = () => {
 
   // Authentication pages
   if (!user) {
+    const authProps: { title: string; subtitle: string } = {
+      title: activeView === "login" ? "Welcome Back" : "Join CyberLab",
+      subtitle:
+        activeView === "login"
+          ? "Sign in to continue your cybersecurity journey"
+          : "Start your cybersecurity journey today",
+    };
+
     return (
       <>
-        <AuthLayout
-          title={activeView === "login" ? "Welcome Back" : "Join CyberLab"}
-          subtitle={
-            activeView === "login"
-              ? "Sign in to continue your cybersecurity journey"
-              : "Start your cybersecurity journey today"
-          }
-        >
+        <AuthLayout {...authProps}>
           {activeView === "login" ? <Login /> : <SignUp />}
         </AuthLayout>
         <ToastContainer /> {/* Add ToastContainer here too */}
