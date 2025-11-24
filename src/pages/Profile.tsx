@@ -23,9 +23,9 @@ const Profile: React.FC = () => {
   );
 
   return (
-    <div className="px-4 py-8 sm:p-6 max-w-4xl mx-auto mt-5">
+    <div className="px-4 py-8 sm:p-6 max-w-4xl mx-auto mt-13">
       {/* Header */}
-      <div className="mb-6 sm:mb-8">
+      <div className="mb-6 sm:mb-8 mt-3">
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">User Profile</h1>
         <p className="text-gray-600 text-sm sm:text-base mt-1">
           Manage your account and track your progress

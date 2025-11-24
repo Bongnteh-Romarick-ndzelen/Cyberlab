@@ -66,7 +66,7 @@ const Mentorship: React.FC = () => {
     return (
       <div className="p-4 md:p-8 max-w-6xl mx-auto mt-5">
         {/* Header */}
-        <div className="mb-6">
+        <div className="mb-6 mt-10">
           <button
             onClick={handleBackToMentors}
             className="flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-4"
@@ -83,7 +83,7 @@ const Mentorship: React.FC = () => {
         </div>
 
         {/* Forums Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-15">
           {filteredForums.map(forum => (
             <ForumCard
               key={forum.id}
@@ -120,9 +120,9 @@ const Mentorship: React.FC = () => {
 
   // Main mentors view
   return (
-    <div className="p-4 md:p-8 max-w-6xl mx-auto mt-5">
+    <div className="p-4 md:p-8 max-w-6xl mx-auto mt-8 pt-8">
       {/* Header */}
-      <div className="mb-8">
+      <div className="mb-8 mt-6">
         <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
           Cybersecurity Mentorship
         </h1>
@@ -132,7 +132,7 @@ const Mentorship: React.FC = () => {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 mt-8">
         <div className="bg-blue-50 rounded-lg p-4 text-center">
           <div className="text-2xl font-bold text-blue-700">{mentors.length}</div>
           <div className="text-blue-600">Expert Mentors</div>
@@ -150,7 +150,7 @@ const Mentorship: React.FC = () => {
       </div>
 
       {/* Mentors Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
         {mentors.map(mentor => (
           <MentorCard
             key={mentor.id}

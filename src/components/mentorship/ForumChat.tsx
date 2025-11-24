@@ -36,9 +36,9 @@ const ForumChat: React.FC<ForumChatProps> = ({ forum, onLeave }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md h-[600px] flex flex-col">
+    <div className="bg-white rounded-lg shadow-md h-[600px] flex flex-col mt-10 pt-8">
       {/* Header */}
-      <div className="border-b border-gray-200 p-4">
+      <div className="border-b border-gray-200 p-4 mt-6">
         <div className="flex justify-between items-center">
           <div>
             <h3 className="text-lg font-semibold text-gray-900">
