@@ -8,7 +8,7 @@ interface MentorCardProps {
 
 const MentorCard: React.FC<MentorCardProps> = ({ mentor, onViewForums }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+    <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow mt-8">
       <div className="flex items-start gap-4">
         {/* Avatar */}
         <div className="flex-shrink-0">

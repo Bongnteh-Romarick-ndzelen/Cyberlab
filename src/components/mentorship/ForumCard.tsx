@@ -33,7 +33,7 @@ const ForumCard: React.FC<ForumCardProps> = ({ forum, onJoin, onEnter }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+    <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow mt-8">
       <div className="flex justify-between items-start mb-3">
         <div className="flex items-center gap-2">
           <span className="text-lg">{getCategoryIcon(forum.category)}</span>

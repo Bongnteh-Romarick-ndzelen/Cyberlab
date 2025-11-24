@@ -17,7 +17,7 @@ const JoinForumModal: React.FC<JoinForumModalProps> = ({
   if (!isOpen || !forum) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 mt-5">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
         <div className="text-center">
           <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">

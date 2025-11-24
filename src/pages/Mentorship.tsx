@@ -53,7 +53,7 @@ const Mentorship: React.FC = () => {
   // If user is in a forum chat, show the chat interface
   if (currentForum) {
     return (
-      <div className="p-4 md:p-8 max-w-6xl mx-auto">
+      <div className="p-4 md:p-8 max-w-6xl mx-auto mt-5">
         <ForumChat forum={currentForum} onLeave={handleLeaveForum} />
       </div>
     );
@@ -64,7 +64,7 @@ const Mentorship: React.FC = () => {
     const mentor = mentors.find(m => m.id === selectedMentorId);
     
     return (
-      <div className="p-4 md:p-8 max-w-6xl mx-auto">
+      <div className="p-4 md:p-8 max-w-6xl mx-auto mt-5">
         {/* Header */}
         <div className="mb-6">
           <button
@@ -120,7 +120,7 @@ const Mentorship: React.FC = () => {
 
   // Main mentors view
   return (
-    <div className="p-4 md:p-8 max-w-6xl mx-auto">
+    <div className="p-4 md:p-8 max-w-6xl mx-auto mt-5">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
