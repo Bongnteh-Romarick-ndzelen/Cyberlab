@@ -53,7 +53,7 @@ const ChallengeDetail: React.FC = () => {
   };
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
+    <div className="p-6 max-w-4xl mx-auto mt-8">
       <button
         onClick={() => Maps('challenges')}
         className="mb-6 text-blue-600 hover:text-blue-500 flex items-center text-sm font-medium"

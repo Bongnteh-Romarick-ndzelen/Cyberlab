@@ -6,7 +6,7 @@ export const Mentorship: React.FC = () => {
     const { theme } = useAuth();
 
     return (
-        <div className="p-4 md:p-8">
+        <div className="p-4 md:p-8 mt-7">
             <h2 className={`text-3xl font-extrabold mb-6 ${theme === 'dark' ? 'text-white' : 'text-slate-800'}`}>Mentorship Hub & Secure Sandbox</h2>
             <div className={`p-6 rounded-xl shadow-lg ${theme === 'dark' ? 'bg-slate-800/90' : 'bg-white shadow-lg'}`}>
                 <h3 className={`text-xl font-semibold mb-3 ${theme === 'dark' ? 'text-cyan-400' : 'text-cyan-600'}`}>Secure Sandbox Console</h3>
